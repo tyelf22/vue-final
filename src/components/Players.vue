@@ -1,19 +1,15 @@
 <template>
   <div>
     <v-card max-width="400" class="mt-10 ml-10">
-      <v-img height="300" src='https://nba-players.herokuapp.com/players/james/lebron'>
-
-      </v-img>
-        <v-card-title> {{ playerName }}</v-card-title>
-        <v-card-text> {{ playerTeam }} </v-card-text>
-        <v-card-text> {{ playerRating }} </v-card-text>
+        <v-text-field v-model="inputF" label="first">{{ inputF }}</v-text-field>
+        <v-text-field v-model="inputL" label="last">{{ inputL }}</v-text-field>
         <v-btn @click="getData">Get data</v-btn>
-        <ul>
-          <li>
-            {{ player }}
-          </li>
-        </ul>
+       
+          <h1>{{ firstName }} {{lastName}} </h1>
+    
     </v-card>
+
+
   </div>
 </template>
 
@@ -23,17 +19,23 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      playerName: "Lebron James",
-      playerTeam: "Los Angeles Lakers",
-      playerRating: 96,
-      player: null,
+      firstName: '',
+      lastName: '',
+      inputF: '',
+      inputL: '',
     }
   },
   methods: {
     getData() {
-    axios.get('https://www.balldontlie.io/api/v1/players?search=lebron')
-    .then(response => (this.player = response))
-    }
+    
+       axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " " + this.inputL)
+       .then(response => this.firstName = response.data.data[0].first_name)
+
+       axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " " + this.inputL)
+       .then(response => this.lastName = response.data.data[0].last_name) 
+    
+    },
+
 
   },
 
