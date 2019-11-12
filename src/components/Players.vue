@@ -8,8 +8,12 @@
             <v-text-field v-model="inputF" label="first">{{ inputF }}</v-text-field>
             <v-text-field v-model="inputL" label="last">{{ inputL }}</v-text-field>
               <v-row >  
-                <v-btn class="mr-2" color="primary" @click="getData">Search Player</v-btn>
-                <v-btn @click="toArray">Save To Roster</v-btn>
+                <v-btn class="mr-2 mt-3" color="primary" @click="getData">
+                  <v-icon class="mr-2" dark>mdi-magnify</v-icon>
+                  Search Player</v-btn>
+                <v-btn class="mt-3" color="success" @click="toArray">
+                  <v-icon class="mr-2" dark>mdi-plus-circle-outline</v-icon>
+                  Add To Roster</v-btn>
                </v-row>
               <h1> {{ firstName }} {{lastName}} </h1>
               <h3>{{ team }}</h3>
@@ -24,6 +28,9 @@
                   <v-icon dark>mdi-delete</v-icon>
                 </v-btn>
                 </v-row>
+                <v-card-subtitle>Info</v-card-subtitle>
+                <v-list-item>Height: {{ heightFeet }}' {{ heightInches }}"</v-list-item>
+                <v-list-item>Weight: {{ weight }}</v-list-item>
               </v-card>
             </v-col>
           </v-row>
@@ -72,24 +79,29 @@ export default {
       //playerLastNames: [],
       playerNames: [],
       alert: false,
+      heightFeet: "",
+      heightInches: "",
+      weight: "",
     }
   },
   methods: {
     getData() {
     
         axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " " + this.inputL)
-       .then(response => this.firstName = response.data.data[0].first_name)
-
-       axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " " + this.inputL)
-       .then(response => this.lastName = response.data.data[0].last_name) 
-
-       axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " " + this.inputL)
-       .then(response => this.team = response.data.data[0].team.full_name) 
+       .then(response => {
+         this.firstName = response.data.data[0].first_name
+         this.lastName = response.data.data[0].last_name
+         this.heightFeet = response.data.data[0].height_feet
+         this.heightInches = response.data.data[0].height_inches
+         this.weight = response.data.data[0].weight_pounds
+         this.team = response.data.data[0].team.full_name
+        })
        .catch(error => {
          console.log(error) // eslint-disable-line no-console
          this.alert = true;
-         
        })
+
+       
 
         this.clear();
     },
@@ -100,6 +112,7 @@ export default {
       // console.log(this.playerFirstNames); // eslint-disable-line no-console
       // console.log(this.playerLastNames); // eslint-disable-line no-console
           this.playerNames.push(this.firstName + " " + this.lastName)
+          this.playerWeight.push(this.weight);
           console.log(this.playerNames) // eslint-disable-line no-console
     },
 
@@ -110,7 +123,8 @@ export default {
     clear() {
       this.inputF = "";
       this.inputL = "";
-    }
+    },
+    
 
 
   },

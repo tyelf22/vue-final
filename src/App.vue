@@ -33,3 +33,11 @@ export default {
   }),
 };
 </script>
+
+<style>
+* {
+  font-family: 'Raleway', sans-serif;
+  letter-spacing: 1px;
+}
+
+</style>
