@@ -23,14 +23,12 @@
             <v-col cols="12" xs="12" sm="6">
               <v-card class="mt-5" v-for="(player, index) in playerNames" :key="player.id"> 
                 <v-row justify="space-between">
-                <v-card-title>{{ player }}</v-card-title>
+                <v-card-title>{{ player.name }}</v-card-title>
                 <v-btn fab small class="mt-3 mr-5" color="error" @click="deleteItem(index)">
                   <v-icon dark>mdi-delete</v-icon>
                 </v-btn>
+                <v-card-text> Weight: {{ player.weight }} </v-card-text>
                 </v-row>
-                <v-card-subtitle>Info</v-card-subtitle>
-                <v-list-item>Height: {{ heightFeet }}' {{ heightInches }}"</v-list-item>
-                <v-list-item>Weight: {{ weight }}</v-list-item>
               </v-card>
             </v-col>
           </v-row>
@@ -96,6 +94,7 @@ export default {
          this.weight = response.data.data[0].weight_pounds
          this.team = response.data.data[0].team.full_name
         })
+
        .catch(error => {
          console.log(error) // eslint-disable-line no-console
          this.alert = true;
@@ -111,7 +110,8 @@ export default {
       // this.playerLastNames.push(this.lastName)
       // console.log(this.playerFirstNames); // eslint-disable-line no-console
       // console.log(this.playerLastNames); // eslint-disable-line no-console
-          this.playerNames.push(this.firstName + " " + this.lastName)
+          this.playerNames.push({'name': this.firstName + " " + this.lastName,
+                                 'weight': this.weight})
           this.playerWeight.push(this.weight);
           console.log(this.playerNames) // eslint-disable-line no-console
     },
