@@ -13,19 +13,19 @@
     </v-app-bar>
 
     <v-content>
-      <app-players></app-players>
+      <router-view></router-view>
     </v-content>
   </v-app>
 </template>
 
 <script>
-import Players from './components/Players';
+
 
 export default {
   name: 'App',
 
   components: {
-    appPlayers: Players,
+   
   },
 
   data: () => ({
