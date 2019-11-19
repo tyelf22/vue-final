@@ -27,38 +27,15 @@
                 <v-btn fab small class="mt-3 mr-5" color="error" @click="deleteItem(index)">
                   <v-icon dark>mdi-delete</v-icon>
                 </v-btn>
-                <v-card-text> Weight: {{ player.weight }} </v-card-text>
+                <v-card-text> 
+                  Weight: {{ player.weight }} 
+                  <br>
+                  Height: {{ player.height }}
+                  </v-card-text>
                 </v-row>
               </v-card>
             </v-col>
-          </v-row>
-
-
-
-        <!-- <v-text-field v-model="inputF" label="first">{{ inputF }}</v-text-field>
-        <v-text-field v-model="inputL" label="last">{{ inputL }}</v-text-field>
-        <v-btn color="primary" @click="getData">Search Player</v-btn> -->
-       
-
-
-          
-        
-       
-          <!-- <v-row>
-            <v-col cols="12" sm="6">
-              <v-card class="mt-5" v-for="(player, index) in playerNames" :key="player.id"> 
-                <v-row justify="space-between">
-                <v-card-title>{{ player }}</v-card-title>
-                <v-btn fab small class="mt-3 mr-5" color="error" @click="deleteItem(index)">
-                  <v-icon dark>mdi-delete</v-icon>
-                </v-btn>
-                </v-row>
-              </v-card>
-            </v-col>
-          </v-row> -->
-
-    
-         
+          </v-row>     
   </div>
 </template>
 
@@ -73,8 +50,6 @@ export default {
       inputF: '',
       inputL: '',
       team: '',
-      //playerFirstNames: [],
-      //playerLastNames: [],
       playerNames: [],
       alert: false,
       heightFeet: "",
@@ -100,19 +75,13 @@ export default {
          this.alert = true;
        })
 
-       
-
         this.clear();
     },
 
     toArray() {
-      // this.playerFirstNames.push(this.firstName)
-      // this.playerLastNames.push(this.lastName)
-      // console.log(this.playerFirstNames); // eslint-disable-line no-console
-      // console.log(this.playerLastNames); // eslint-disable-line no-console
           this.playerNames.push({'name': this.firstName + " " + this.lastName,
-                                 'weight': this.weight})
-          this.playerWeight.push(this.weight);
+                                 'weight': this.weight,
+                                 'height': `${this.heightFeet}' ${this.heightInches}"`})
           console.log(this.playerNames) // eslint-disable-line no-console
     },
 
@@ -123,12 +92,9 @@ export default {
     clear() {
       this.inputF = "";
       this.inputL = "";
-    },
-    
-
+    },  
 
   },
-
 
 }
   
