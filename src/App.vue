@@ -18,7 +18,9 @@
     </v-app-bar>
 
     <v-content>
+     <keep-alive> 
       <router-view></router-view>
+     </keep-alive>
     </v-content>
   </v-app>
 </template>
