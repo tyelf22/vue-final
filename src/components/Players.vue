@@ -22,8 +22,15 @@
   
             <v-col cols="12" xs="12" sm="6">
               <v-card class="mt-5" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
+                  <v-img
+                    class="black--text align-end"
+                    height="200px"
+                    :src="player.image"
+                  >
+                    <v-card-title>{{player.name}}</v-card-title>
+                  </v-img>
                 <v-row justify="space-between">
-                <v-card-title>{{ player.name }}</v-card-title>
+                
                 <v-btn fab small class="mt-3 mr-5" color="error" @click="deleteItem(index)">
                   <v-icon dark>mdi-delete</v-icon>
                 </v-btn>
@@ -49,11 +56,11 @@ export default {
       inputF: '',
       inputL: '',
       team: '',
-      //playerNames: [],
       alert: false,
       heightFeet: "",
       heightInches: "",
       weight: "",
+      id: "",
     }
   },
   methods: {
@@ -67,6 +74,7 @@ export default {
          this.heightInches = response.data.data[0].height_inches
          this.weight = response.data.data[0].weight_pounds
          this.team = response.data.data[0].team.full_name
+         this.id = response.data.data[0].id
         })
 
        .catch(error => {
@@ -78,9 +86,12 @@ export default {
     },
 
     toArray() {
-          this.$store.state.playerNames.push({'name': this.firstName + " " + this.lastName,
+          this.$store.state.playerNames.push({
+                                 'id': this.id,
+                                 'name': this.firstName + " " + this.lastName,
                                  'weight': this.weight,
-                                 'height': `${this.heightFeet}' ${this.heightInches}"`})
+                                 'height': `${this.heightFeet}' ${this.heightInches}"`,
+                                 'image': `https://nba-players.herokuapp.com/players/${this.lastName}/${this.firstName}` })
           console.log(this.$store.state.playerNames) // eslint-disable-line no-console
     },
 
