@@ -38,6 +38,8 @@
                   Weight: {{ player.weight }} 
                   <br>
                   Height: {{ player.height }}
+                  <br>
+                  FGA: {{player.fga}}
                   </v-card-text>
                 </v-row>
               </v-card>
@@ -61,6 +63,7 @@ export default {
       heightInches: "",
       weight: "",
       id: "",
+      fga: "",
     }
   },
   methods: {
@@ -82,17 +85,41 @@ export default {
          this.alert = true;
        })
 
+
+/*         axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=1&player_ids[]=2")
+       .then(response => {
+         console.log(response); // eslint-disable-line no-console
+        }) */
+
         this.clear();
     },
 
     toArray() {
+
+        axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=" + this.id)
+       .then(response => {
+         this.fga = response.data.data[0].fga
+         console.log(this.id) // eslint-disable-line no-console
+         console.log(response) // eslint-disable-line no-console
+
           this.$store.state.playerNames.push({
                                  'id': this.id,
                                  'name': this.firstName + " " + this.lastName,
                                  'weight': this.weight,
                                  'height': `${this.heightFeet}' ${this.heightInches}"`,
-                                 'image': `https://nba-players.herokuapp.com/players/${this.lastName}/${this.firstName}` })
-          console.log(this.$store.state.playerNames) // eslint-disable-line no-console
+                                 'image': `https://nba-players.herokuapp.com/players/${this.lastName}/${this.firstName}`,
+                                 'fga': this.fga,
+                                  });
+          //console.log(this.$store.state.playerNames) // eslint-disable-line no-console
+
+
+         //this.fga = response.data[0].fga
+        })
+        /* let idArray = []
+        this.$store.state.playerNames.forEach(obj => {
+        idArray.push(obj.id) 
+        console.log(idArray) */ // eslint-disable-line no-console
+       
     },
 
     deleteItem(index) {
