@@ -12,8 +12,8 @@
       <v-spacer></v-spacer>
   
         <v-btn height="100%" text to="/">Home</v-btn>
-        <v-btn height="100%" text to="/playerstats">Player Stats</v-btn>
-        <v-btn height="100%" text to="signup">Sign Up</v-btn>
+        <v-btn height="100%" text to="/players">Players</v-btn>
+        <v-btn height="100%" text to="/playerstats">Player Stats</v-btn> 
 
     </v-app-bar>
 

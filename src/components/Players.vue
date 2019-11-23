@@ -1,6 +1,6 @@
 <template>
   <div class="players">
-        <v-alert dismissible v-model="alert" v-if="alert" type="error">No player found</v-alert>
+        <v-alert v-fade:display.delayed="'none'" dismissible v-model="alert" v-if="alert" type="error">No player found</v-alert>
         <h1>Type the name of the player</h1> 
           
         <v-row>
@@ -44,7 +44,9 @@
                 </v-row>
               </v-card>
             </v-col>
-          </v-row>     
+          </v-row>  
+          <v-alert v-fade:display.delayed="'none'" id="playerAlert" v-model="playerAlert" v-if="playerAlert" type="success"> {{this.firstName}} {{this.lastName}} added!</v-alert>
+   
   </div>
 </template>
 
@@ -59,6 +61,7 @@ export default {
       inputL: '',
       team: '',
       alert: false,
+      playerAlert: false,
       heightFeet: "",
       heightInches: "",
       weight: "",
@@ -123,6 +126,15 @@ export default {
             'fieldGoalPercentage': this.fieldGoalPercentage,
             });
         })
+
+        this.playerAlert = true;
+        this.resetDir();
+    },
+
+    resetDir() {
+      setTimeout(() => {
+        this.playerAlert = false;
+      }, 3000)
     },
 
     deleteItem(index) {
@@ -143,6 +155,19 @@ export default {
 <style scoped>
 .players {
   margin: 50px 50px;
+}
+
+#playerAlert {
+  width: 250px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-left: -125px;
+  font-size: 10px;
 }
 
 </style>
