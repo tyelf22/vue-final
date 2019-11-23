@@ -1,6 +1,7 @@
 <template>
   <div class="players">
-        <v-alert v-fade:display.delayed="'none'" dismissible v-model="alert" v-if="alert" type="error">No player found</v-alert>
+        <v-alert v-fade:display.delayed="'none'" id="errorAlert" v-model="alert" v-if="alert" type="error">No player found</v-alert>
+        <v-alert v-fade:display.delayed="'none'" id="errorAlert" v-model="seasonAlert" v-if="seasonAlert" type="error">Choose a current player</v-alert>
         <h1>Type the name of the player</h1> 
           
         <v-row>
@@ -21,26 +22,23 @@
         
   
             <v-col cols="12" xs="12" sm="6">
-              <v-card class="mt-5" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
-                  <v-img
-                    class="black--text align-end"
-                    height="200px"
+              <v-card dark class="mt-5" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
+                  <v-img 
+                    class="align-end"
                     :src="player.image"
                   >
                     <v-card-title>{{player.name}}</v-card-title>
                   </v-img>
                 <v-row justify="space-between">
-                
-                <v-btn fab small class="mt-3 mr-5" color="error" @click="deleteItem(index)">
-                  <v-icon dark>mdi-delete</v-icon>
-                </v-btn>
+            
                 <v-card-text> 
                   Weight: {{ player.weight }} 
                   <br>
                   Height: {{ player.height }}
-                  <br>
-                  ID: {{player.id}}
                   </v-card-text>
+                  <v-btn fab small dark absolute bottom right class="mb-3" color="error" @click="deleteItem(index)">
+                    <v-icon dark>mdi-delete</v-icon>
+                  </v-btn>
                 </v-row>
               </v-card>
             </v-col>
@@ -62,6 +60,7 @@ export default {
       team: '',
       alert: false,
       playerAlert: false,
+      seasonAlert: false,
       heightFeet: "",
       heightInches: "",
       weight: "",
@@ -126,6 +125,12 @@ export default {
             'fieldGoalPercentage': this.fieldGoalPercentage,
             });
         })
+        .catch(error => {
+         console.log(error) // eslint-disable-line no-console
+         this.seasonAlert = true;
+         this.playerAlert = false;
+         this.alertForSeason();
+       })
 
         this.playerAlert = true;
         this.resetDir();
@@ -136,6 +141,14 @@ export default {
         this.playerAlert = false;
       }, 3000)
     },
+
+    alertForSeason() {
+      setTimeout(() => {
+        this.seasonAlert = false;
+      }, 3000)
+    },
+
+
 
     deleteItem(index) {
       this.$store.state.playerNames.splice(index, 1)
@@ -168,6 +181,23 @@ export default {
   left: 50%;
   margin-left: -125px;
   font-size: 10px;
+}
+
+#errorAlert {
+  width: 250px;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  margin-left: -125px;
+  font-size: 10px;
+}
+
+@media screen and (min-width: 1080px) {
+
 }
 
 </style>

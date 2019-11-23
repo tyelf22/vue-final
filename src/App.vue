@@ -2,11 +2,10 @@
   <v-app>
     <v-app-bar
       app
-      color="primary"
       dark
     >
       <div class="d-flex align-center">
-        NBA TEAM BUILDER
+        NBA STAT TRACKER
       </div>
 
       <v-spacer></v-spacer>
