@@ -5,9 +5,13 @@
     <v-row justify="space-between">
     <v-card-title>{{ player.name }}</v-card-title>
     <v-card-text> 
-      Weight: {{ player.weight }} 
-      <br>
-      Height: {{ player.height }}
+      Games Played: {{ player.gamesPlayed}} |
+      Points: {{ player.points }} | 
+      Assists: {{player.assists}} |
+      Rebounds: {{player.rebounds}} |
+      Steals: {{player.steals}} |
+      Turnovers: {{player.turnovers}} |
+      FG%: {{ player.fieldGoalPercentage }} |
       </v-card-text>
     </v-row>
   </v-card>

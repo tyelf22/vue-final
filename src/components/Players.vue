@@ -39,7 +39,7 @@
                   <br>
                   Height: {{ player.height }}
                   <br>
-                  FGA: {{player.fga}}
+                  ID: {{player.id}}
                   </v-card-text>
                 </v-row>
               </v-card>
@@ -63,7 +63,14 @@ export default {
       heightInches: "",
       weight: "",
       id: "",
-      fga: "",
+      points: "",
+      gamesPlayed: "",
+      assists: "",
+      rebounds: "",
+      steals: "",
+      turnovers: "",
+      fieldGoalPercentage: "",
+
     }
   },
   methods: {
@@ -85,41 +92,37 @@ export default {
          this.alert = true;
        })
 
-
-/*         axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=1&player_ids[]=2")
-       .then(response => {
-         console.log(response); // eslint-disable-line no-console
-        }) */
-
         this.clear();
     },
 
     toArray() {
 
-        axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2018&player_ids[]=" + this.id)
+        axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=" + this.id)
        .then(response => {
-         this.fga = response.data.data[0].fga
-         console.log(this.id) // eslint-disable-line no-console
+         this.points = response.data.data[0].pts
+         this.gamesPlayed = response.data.data[0].games_played
+         this.assists = response.data.data[0].ast
+         this.rebounds = response.data.data[0].reb
+         this.steals = response.data.data[0].stl
+         this.turnovers = response.data.data[0].turnover
+         this.fieldGoalPercentage = response.data.data[0].fg_pct
          console.log(response) // eslint-disable-line no-console
 
           this.$store.state.playerNames.push({
-                                 'id': this.id,
-                                 'name': this.firstName + " " + this.lastName,
-                                 'weight': this.weight,
-                                 'height': `${this.heightFeet}' ${this.heightInches}"`,
-                                 'image': `https://nba-players.herokuapp.com/players/${this.lastName}/${this.firstName}`,
-                                 'fga': this.fga,
-                                  });
-          //console.log(this.$store.state.playerNames) // eslint-disable-line no-console
-
-
-         //this.fga = response.data[0].fga
+            'id': this.id,
+            'name': this.firstName + " " + this.lastName,
+            'weight': this.weight,
+            'height': `${this.heightFeet}' ${this.heightInches}"`,
+            'image': `https://nba-players.herokuapp.com/players/${this.lastName}/${this.firstName}`,
+            'gamesPlayed' : this.gamesPlayed,
+            'points': this.points,
+            'assists': this.assists,
+            'rebounds': this.rebounds,
+            'steals': this.steals,
+            'turnovers': this.turnovers,
+            'fieldGoalPercentage': this.fieldGoalPercentage,
+            });
         })
-        /* let idArray = []
-        this.$store.state.playerNames.forEach(obj => {
-        idArray.push(obj.id) 
-        console.log(idArray) */ // eslint-disable-line no-console
-       
     },
 
     deleteItem(index) {
@@ -135,7 +138,6 @@ export default {
 
 }
   
-
 </script>
 
 <style scoped>
