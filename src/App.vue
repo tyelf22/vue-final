@@ -13,7 +13,17 @@
         <v-btn class="white--text" height="100%" text to="/">Home</v-btn>
         <v-btn class="white--text"  height="100%" text to="/players">Players</v-btn>
         <v-btn class="white--text"  height="100%" text to="/playerstats">Player Stats</v-btn> 
-    </v-app-bar>
+
+            <v-badge id="badge"
+      color="red"
+      top
+    >
+      <template v-slot:badge>
+        <span v-if="counter > 0"> {{counter}} </span> 
+      </template>
+        <v-icon dark></v-icon>
+      </v-badge>
+  </v-app-bar>
 
     <v-content>
      <keep-alive> 
@@ -33,6 +43,12 @@ export default {
   data: () => ({
     //
   }),
+
+  computed: {
+    counter() {
+        return this.$store.state.playerNames.length;
+    }
+}
 };
 </script>
 
@@ -45,6 +61,12 @@ export default {
 
 .link {
   text-decoration: none;
+}
+
+#badge {
+  margin-left: -5px;
+  margin-right: 10px;
+  margin-bottom: 8px;
 }
 
 </style>

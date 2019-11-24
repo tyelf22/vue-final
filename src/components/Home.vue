@@ -15,22 +15,12 @@
         </v-col>
         </v-row>
     </v-parallax>
-            <v-badge
-      color="red"
-      bottom
-    >
-      <template v-slot:badge>
-        <v-icon dark>
-          {{ this.$store.state.playerLength }}
-        </v-icon>
-      </template>
-    </v-badge>
     </div>
 </template>
 
 <script>
 export default {
-    
+
 }
 </script>
 

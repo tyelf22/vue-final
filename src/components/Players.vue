@@ -134,10 +134,6 @@ export default {
             'fieldGoalPercentage': this.fieldGoalPercentage,
             });
 
-          this.$store.state.playerLength += 1;
-
-          console.log(this.$store.state.playerLength) // eslint-disable-line no-console
-
         })
         .catch(error => {
          console.log(error) // eslint-disable-line no-console
