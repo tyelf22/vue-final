@@ -10,14 +10,21 @@
         justify="center"
         >
         <v-col class="text-center" cols="12">
-            <h1 class="display-2 font-weight-thin mb-4">NBA Team Builder</h1>
+            <h1 class="display-2 font-weight-thin mb-4">NBA Stat Tracker</h1>
             <h4 class="subheading">Track your favorite players stats!</h4>
         </v-col>
         </v-row>
     </v-parallax>
-    <div class="box">
-
-    </div>
+            <v-badge
+      color="red"
+      bottom
+    >
+      <template v-slot:badge>
+        <v-icon dark>
+          {{ this.$store.state.playerLength }}
+        </v-icon>
+      </template>
+    </v-badge>
     </div>
 </template>
 

@@ -1,7 +1,7 @@
 <template>
 <div class="playerStats">
   <h1>See the player stats</h1>
-  <v-card dark class="mt-5" v-for="player in this.$store.state.playerNames" :key="player.id"> 
+  <v-card class="mt-5" v-for="player in this.$store.state.playerNames" :key="player.id"> 
     <v-row justify="space-between">
     <v-card-title>{{ player.name }}</v-card-title>
     <v-card-text> 
@@ -30,5 +30,7 @@ export default {
 </script>
 
 <style scoped>
-
+h1 {
+  font-weight: 100;
+}
 </style>

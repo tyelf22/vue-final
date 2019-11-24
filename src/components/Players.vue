@@ -1,28 +1,34 @@
 <template>
   <div class="players">
-        <v-alert v-fade:display.delayed="'none'" id="errorAlert" v-model="alert" v-if="alert" type="error">No player found</v-alert>
-        <v-alert v-fade:display.delayed="'none'" id="errorAlert" v-model="seasonAlert" v-if="seasonAlert" type="error">Choose a current player</v-alert>
-        <h1>Type the name of the player</h1> 
-          
+        <h1>Search Player</h1> 
         <v-row>
-          <v-col cols="12" xs="12" sm="6">
-            <v-text-field v-model="inputF" label="first">{{ inputF }}</v-text-field>
-            <v-text-field v-model="inputL" label="last">{{ inputL }}</v-text-field>
-              <v-row >  
-                <v-btn class="mr-2 mt-3" color="primary" @click="getData">
-                  <v-icon class="mr-2" dark>mdi-magnify</v-icon>
-                  Search Player</v-btn>
-                <v-btn class="mt-3" color="success" @click="toArray">
-                  <v-icon class="mr-2" dark>mdi-plus-circle-outline</v-icon>
-                  Add To Roster</v-btn>
-               </v-row>
-              <h1> {{ firstName }} {{lastName}} </h1>
-              <h3>{{ team }}</h3>
-          </v-col>
-        
+          <v-col cols="12" xs="12" md="6">
+            <v-form>
+              <v-text-field outlined v-model="inputF" label="First Name">{{ inputF }}</v-text-field>
+              <v-text-field outlined v-model="inputL" label="Last Name">{{ inputL }}</v-text-field>
+              <v-btn class="mr-2 mt-n5" color="primary" @click="getData">
+                  <v-icon class="mr-2">mdi-magnify</v-icon>
+              Search Player</v-btn>
+              </v-form>
+            </v-col>
+              
+            
+            <v-col cols="12" xs="12" md="6">
+              <div class="box">
+                <div>
+                  <h3>{{firstName}} {{lastName}}</h3>
+                  <div class="break"></div>
+                  <h4>{{team}}</h4>
+                </div>
+              </div>
+              <v-btn class="mt-3" color="success" @click="toArray">
+                <v-icon class="mr-2">mdi-plus-circle-outline</v-icon>
+              Add To Roster</v-btn>
+            </v-col>
+        </v-row>
   
-            <v-col cols="12" xs="12" sm="6">
-              <v-card dark class="mt-5" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
+            <v-row justify="center">
+              <v-card dark class="mt-5 ma-1" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
                   <v-img 
                     class="align-end"
                     :src="player.image"
@@ -36,14 +42,17 @@
                   <br>
                   Height: {{ player.height }}
                   </v-card-text>
-                  <v-btn fab small dark absolute bottom right class="mb-3" color="error" @click="deleteItem(index)">
-                    <v-icon dark>mdi-delete</v-icon>
+                  <v-btn fab small absolute bottom right class="mb-3 mr-n5" color="error" @click="deleteItem(index)">
+                    <v-icon>mdi-delete</v-icon>
                   </v-btn>
                 </v-row>
               </v-card>
-            </v-col>
           </v-row>  
+
+          <!-- Used custom directive -->
           <v-alert v-fade:display.delayed="'none'" id="playerAlert" v-model="playerAlert" v-if="playerAlert" type="success"> {{this.firstName}} {{this.lastName}} added!</v-alert>
+          <v-alert v-fade:display.delayed="'none'" id="errorAlert" v-model="alert" v-if="alert" type="error">No player found</v-alert>
+          <v-alert v-fade:display.delayed="'none'" id="errorAlert" v-model="seasonAlert" v-if="seasonAlert" type="error">Choose a current player</v-alert>
    
   </div>
 </template>
@@ -92,6 +101,7 @@ export default {
        .catch(error => {
          console.log(error) // eslint-disable-line no-console
          this.alert = true;
+         this.resetAlert();
        })
 
         this.clear();
@@ -108,7 +118,6 @@ export default {
          this.steals = response.data.data[0].stl
          this.turnovers = response.data.data[0].turnover
          this.fieldGoalPercentage = response.data.data[0].fg_pct
-         console.log(response) // eslint-disable-line no-console
 
           this.$store.state.playerNames.push({
             'id': this.id,
@@ -124,27 +133,38 @@ export default {
             'turnovers': this.turnovers,
             'fieldGoalPercentage': this.fieldGoalPercentage,
             });
+
+          this.$store.state.playerLength += 1;
+
+          console.log(this.$store.state.playerLength) // eslint-disable-line no-console
+
         })
         .catch(error => {
          console.log(error) // eslint-disable-line no-console
          this.seasonAlert = true;
          this.playerAlert = false;
-         this.alertForSeason();
+         this.resetSeasonAlert();
        })
 
         this.playerAlert = true;
-        this.resetDir();
+        this.resetPlayerAlert();
     },
 
-    resetDir() {
+    resetPlayerAlert() {
       setTimeout(() => {
         this.playerAlert = false;
       }, 3000)
     },
 
-    alertForSeason() {
+    resetSeasonAlert() {
       setTimeout(() => {
         this.seasonAlert = false;
+      }, 3000)
+    },
+
+      resetAlert() {
+        setTimeout(() => {
+        this.alert = false;
       }, 3000)
     },
 
@@ -170,6 +190,11 @@ export default {
   margin: 50px 50px;
 }
 
+h1 {
+  font-weight: 100;
+  padding: 10px;
+}
+
 #playerAlert {
   width: 250px;
   height: 20px;
@@ -177,10 +202,12 @@ export default {
   justify-content: center;
   align-items: center;
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 50%;
   margin-left: -125px;
   font-size: 10px;
+  z-index: 99;
+  margin-top: 70px;
 }
 
 #errorAlert {
@@ -190,10 +217,39 @@ export default {
   justify-content: center;
   align-items: center;
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 50%;
   margin-left: -125px;
   font-size: 10px;
+  z-index: 99;
+  margin-top: 70px;
+}
+
+.box {
+  height: 143px;
+  background-color: #e5e5e5;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-flow: wrap;
+  border-radius: 4px;
+}
+
+.box div {
+  
+}
+
+.box h3 {
+  text-align: center;
+}
+
+.box h4 {
+  
+}
+
+.box .break {
+width: 100%;
 }
 
 @media screen and (min-width: 1080px) {
