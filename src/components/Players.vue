@@ -232,16 +232,8 @@ h1 {
   border-radius: 4px;
 }
 
-.box div {
-  
-}
-
 .box h3 {
   text-align: center;
-}
-
-.box h4 {
-  
 }
 
 .box .break {

@@ -47,7 +47,7 @@ export default {
   computed: {
     counter() {
         return this.$store.state.playerNames.length;
-    }
+    },
 }
 };
 </script>
