@@ -21,7 +21,7 @@
             <h2 class="title text-center mt-10 ">The best way to track and compare stats</h2>
             <h4 class="subtitle-1 text-center font-weight-thin">Start today by following three easy steps</h4>
 
-            <v-row justify="center" class="mt-12 mx-1">
+            <v-row justify="center" class="mt-12 px-5">
                 <v-col class="text-center" cols="12" sm="3">
                     <v-icon large color="primary">mdi-numeric-1-circle</v-icon>
                     <h5 class="mt-4">Search Player</h5>

@@ -3,41 +3,40 @@
         <h1>Search Player</h1> 
         <v-row>
           <v-col cols="12" xs="12" md="6">
-            <v-form>
-              <v-text-field outlined v-model="inputF" label="First Name">{{ inputF }}</v-text-field>
-              <v-text-field outlined v-model="inputL" label="Last Name">{{ inputL }}</v-text-field>
-              <v-btn class="mr-2 mt-n5" color="primary" @click="getData">
+            <v-form ref="form" v-model="valid">
+              <v-text-field required :rules="nameRules" outlined v-model="inputF" label="First Name">{{ inputF }}</v-text-field>
+              <v-text-field required :rules="nameRules" outlined v-model="inputL" label="Last Name">{{ inputL }}</v-text-field>
+              <v-btn :disabled="!valid" @click="getData" class="mr-2 mt-n1" color="primary">
                   <v-icon class="mr-2">mdi-magnify</v-icon>
               Search Player</v-btn>
+               <v-btn @click="reset" class="mr-2 mt-n1" color="error">
+              Reset Form</v-btn>
               </v-form>
             </v-col>
               
             
             <v-col cols="12" xs="12" md="6">
-              <div class="box">
-                <div>
-                  <h3>{{firstName}} {{lastName}}</h3>
-                  <div class="break"></div>
-                  <h4>{{team}}</h4>
-                </div>
-              </div>
-              <v-btn class="mt-3" color="success" @click="toArray">
+              <v-sheet height="145" class="pa-12 text-center" color="success" elevation="3">
+                <h3>{{firstName}} {{lastName}}</h3>
+                <h4>{{team}}</h4>
+              </v-sheet>
+              <v-btn dark color="success" class="mt-6" @click="toArray">
                 <v-icon class="mr-2">mdi-plus-circle-outline</v-icon>
               Add To Roster</v-btn>
             </v-col>
         </v-row>
   
             <v-row justify="center">
-              <v-card dark class="mt-5 ma-1" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
+              <v-card color="primary" class="mt-5 ma-1" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
                   <v-img 
                     class="align-end"
                     :src="player.image"
                   >
-                    <v-card-title>{{player.name}}</v-card-title>
+                    <v-card-title class="white--text">{{player.name}}</v-card-title>
                   </v-img>
                 <v-row justify="space-between">
             
-                <v-card-text> 
+                <v-card-text class="white--text"> 
                   Weight: {{ player.weight }} 
                   <br>
                   Height: {{ player.height }}
@@ -81,6 +80,10 @@ export default {
       steals: "",
       turnovers: "",
       fieldGoalPercentage: "",
+      nameRules: [
+        v => !!v || 'Full Name is required'
+      ],
+      valid: false,
 
     }
   },
@@ -104,7 +107,11 @@ export default {
          this.resetAlert();
        })
 
-        this.clear();
+    },
+
+    buttonClick() {
+      this.getData();
+      this.validate();
     },
 
     toArray() {
@@ -169,11 +176,10 @@ export default {
     deleteItem(index) {
       this.$store.state.playerNames.splice(index, 1)
     },
-
-    clear() {
-      this.inputF = "";
-      this.inputL = "";
-    },  
+ 
+    reset () {
+      this.$refs.form.reset();
+    },
 
   },
 
@@ -183,12 +189,11 @@ export default {
 
 <style scoped>
 .players {
-  margin: 50px 50px;
+  margin: 25px 50px;
 }
 
 h1 {
   font-weight: 100;
-  padding: 10px;
 }
 
 #playerAlert {
@@ -238,6 +243,13 @@ h1 {
 
 .box .break {
 width: 100%;
+}
+
+h3 {
+  color: white;
+}
+h4 {
+  color: white;
 }
 
 @media screen and (min-width: 1080px) {
