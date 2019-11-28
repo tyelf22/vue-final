@@ -16,7 +16,7 @@
               
             
             <v-col cols="12" xs="12" md="6">
-              <v-sheet height="145" class="pa-12 text-center" color="success" elevation="3">
+              <v-sheet dark height="145" class="pa-12 text-center" color="success" elevation="3">
                 <h3>{{firstName}} {{lastName}}</h3>
                 <h4>{{team}}</h4>
               </v-sheet>
@@ -61,6 +61,20 @@ import axios from 'axios'
 export default {
   data() {
     return {
+/*       lebronFirst: "",
+      lebronLast: "",
+      lebronFeet: null,
+      lebronInches: null,
+      lebronWeight: null,
+      lebronTeam: "",
+      lebronId: null,
+      lebronPoints: null,
+      lebronGames: null,
+      lebronAssists: null,
+      lebronRebounds: null,
+      lebronSteals: null,
+      lebronTurnovers: null,
+      lebronFieldGoals: null, */
       firstName: '',
       lastName: '',
       inputF: '',
@@ -84,9 +98,60 @@ export default {
         v => !!v || 'Full Name is required'
       ],
       valid: false,
-
     }
   },
+
+/*   created() {
+            
+        axios.get("https://www.balldontlie.io/api/v1/players?search=lebron james")
+       .then(response => {
+        this.lebronFirst = response.data.data[0].first_name
+        this.lebronLast = response.data.data[0].last_name
+        this.lebronFeet = response.data.data[0].height_feet
+        this.lebronInches = response.data.data[0].height_inches
+        this.lebronWeight = response.data.data[0].weight_pounds
+        this.lebronTeam = response.data.data[0].team.full_name
+        this.lebronId = response.data.data[0].id
+        })
+
+       .catch(error => {
+         console.log(error) // eslint-disable-line no-console
+         this.alert = true;
+         this.resetAlert();
+       })
+
+        axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=237")
+       .then(response => {
+        this.lebronPoints = response.data.data[0].pts
+        this.lebronGames = response.data.data[0].games_played
+        this.lebronAssists = response.data.data[0].ast
+        this.lebronRebounds= response.data.data[0].reb
+        this.lebronSteals = response.data.data[0].stl
+        this.lebronTurnovers = response.data.data[0].turnover
+        this.lebronFieldGoals = response.data.data[0].fg_pct
+
+            this.$store.state.playerNames.push({
+              'id': this.lebronId,
+              'name': `${this.lebronFirst} ${this.lebronLast}`,
+              'weight': this.lebronWeight,
+              'height': `${this.lebronFeet}' ${this.lebronInches}"`,
+              'image': `https://nba-players.herokuapp.com/players/james/lebron`,
+              'gamesPlayed' : this.lebronGames,
+              'points': this.lebronPoints,
+              'assists': this.lebronAssists,
+              'rebounds': this.lebronRebounds,
+              'steals': this.lebronSteals,
+              'turnovers': this.lebronTurnovers,
+              'fieldGoalPercentage': this.lebronTurnovers,
+            });
+
+          })
+
+
+    console.log('created'); // eslint-disable-line no-console
+
+  }, */
+
   methods: {
     getData() {
     
@@ -235,21 +300,6 @@ h1 {
   align-items: center;
   flex-flow: wrap;
   border-radius: 4px;
-}
-
-.box h3 {
-  text-align: center;
-}
-
-.box .break {
-width: 100%;
-}
-
-h3 {
-  color: white;
-}
-h4 {
-  color: white;
 }
 
 @media screen and (min-width: 1080px) {
