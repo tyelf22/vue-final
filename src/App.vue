@@ -55,6 +55,7 @@ export default {
       lebronSteals: null,
       lebronTurnovers: null,
       lebronFieldGoals: null,
+      lebronFreeThrowPercentage: null,
   }),
 
   mounted() {
@@ -83,6 +84,7 @@ export default {
         this.lebronSteals = response.data.data[0].stl
         this.lebronTurnovers = response.data.data[0].turnover
         this.lebronFieldGoals = response.data.data[0].fg_pct
+        this.lebronFreeThrowPercentage = response.data.data[0].ft_pct
 
             this.$store.state.playerNames.push({
               'id': this.lebronId,
@@ -97,6 +99,7 @@ export default {
               'steals': this.lebronSteals,
               'turnovers': this.lebronTurnovers,
               'fieldGoalPercentage': this.lebronTurnovers,
+              'freeThrowPercentage': this.lebronFreeThrowPercentage,
             });
 
           })

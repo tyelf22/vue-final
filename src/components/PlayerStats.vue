@@ -11,7 +11,8 @@
         Rebounds: {{player.rebounds}} |
         Steals: {{player.steals}} |
         Turnovers: {{player.turnovers}} |
-        FG%: {{player.fieldGoalPercentage}} 
+        FG%: {{player.fieldGoalPercentage}} |
+        FT%: {{player.freeThrowPercentage}}
         </v-card-text>
       </v-row>
     </v-card>

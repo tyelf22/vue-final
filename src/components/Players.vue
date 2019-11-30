@@ -98,6 +98,7 @@ export default {
         v => !!v || 'Full Name is required'
       ],
       valid: false,
+      freeThrowPercentage: "",
     }
   },
 
@@ -190,6 +191,7 @@ export default {
          this.steals = response.data.data[0].stl
          this.turnovers = response.data.data[0].turnover
          this.fieldGoalPercentage = response.data.data[0].fg_pct
+         this.freeThrowPercentage = response.data.data[0].ft_pct
 
           this.$store.state.playerNames.push({
             'id': this.id,
@@ -204,6 +206,7 @@ export default {
             'steals': this.steals,
             'turnovers': this.turnovers,
             'fieldGoalPercentage': this.fieldGoalPercentage,
+            'freeThrowPercentage': this.freeThrowPercentage,
             });
 
         })
