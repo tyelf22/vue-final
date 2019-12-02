@@ -2,17 +2,19 @@
   <v-app>
     <v-app-bar
       app
+      hide-on-scroll
+      
       color="primary"    
     >
-      <div class="d-flex align-center white--text">
+      <div class="align-center white--text d-none d-sm-flex">
         NBA STAT TRACKER
       </div>
 
       <v-spacer></v-spacer>
   
-        <v-btn class="white--text" height="100%" text to="/">Home</v-btn>
-        <v-btn class="white--text"  height="100%" text to="/players">Players</v-btn>
-        <v-btn class="white--text"  height="100%" text to="/playerstats">Player Stats</v-btn> 
+        <v-btn class="white--text" height="110%" text to="/">Home</v-btn>
+        <v-btn class="white--text"  height="110%" text to="/players">Players</v-btn>
+        <v-btn class="white--text"  height="110%" text to="/playerstats">Player Stats</v-btn> 
 
             <v-badge id="badge"
       color="red"
@@ -133,5 +135,6 @@ export default {
   margin-right: 10px;
   margin-bottom: 8px;
 }
+
 
 </style>
