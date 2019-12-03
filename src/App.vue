@@ -60,7 +60,7 @@ export default {
       lebronFreeThrowPercentage: null,
   }),
 
-  mounted() {
+  created() {
             
         axios.get("https://www.balldontlie.io/api/v1/players?search=lebron james")
        .then(response => {
