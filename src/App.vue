@@ -43,11 +43,6 @@ export default {
   name: 'App',
 
   data: () => ({
-      lebronFirst: "",
-      lebronLast: "",
-      lebronFeet: null,
-      lebronInches: null,
-      lebronWeight: null,
       lebronTeam: "",
       lebronId: null,
       lebronPoints: null,
@@ -60,23 +55,7 @@ export default {
       lebronFreeThrowPercentage: null,
   }),
 
-  beforeMount() {
-            
-        axios.get("https://www.balldontlie.io/api/v1/players?search=lebron james")
-       .then(response => {
-        this.lebronFirst = response.data.data[0].first_name
-        this.lebronLast = response.data.data[0].last_name
-        this.lebronFeet = response.data.data[0].height_feet
-        this.lebronInches = response.data.data[0].height_inches
-        this.lebronWeight = response.data.data[0].weight_pounds
-        this.lebronTeam = response.data.data[0].team.full_name
-        this.lebronId = response.data.data[0].id
-        })
-
-       .catch(error => {
-         console.log(error) // eslint-disable-line no-console
-       })
-
+  created() {
         axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=237")
        .then(response => {
         this.lebronPoints = response.data.data[0].pts
@@ -89,10 +68,10 @@ export default {
         this.lebronFreeThrowPercentage = response.data.data[0].ft_pct
 
             this.$store.state.playerNames.push({
-              'id': this.lebronId,
-              'name': `${this.lebronFirst} ${this.lebronLast}`,
-              'weight': this.lebronWeight,
-              'height': `${this.lebronFeet}' ${this.lebronInches}"`,
+              'id': 237,
+              'name': "Lebron James",
+              'weight': 250,
+              'height': "6' 8\"",
               'image': `https://nba-players.herokuapp.com/players/james/lebron`,
               'gamesPlayed' : this.lebronGames,
               'points': this.lebronPoints,
@@ -106,8 +85,7 @@ export default {
 
           })
 
-
-    console.log('created'); // eslint-disable-line no-console
+  console.log(this.$store.state.playerNames, "created")// eslint-disable-line no-console
 
   },
 
