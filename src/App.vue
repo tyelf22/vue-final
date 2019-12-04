@@ -44,15 +44,15 @@ export default {
 
   data: () => ({
       lebronTeam: "",
-      lebronId: null,
-      lebronPoints: null,
-      lebronGames: null,
-      lebronAssists: null,
-      lebronRebounds: null,
-      lebronSteals: null,
-      lebronTurnovers: null,
-      lebronFieldGoals: null,
-      lebronFreeThrowPercentage: null,
+      lebronId: undefined,
+      lebronPoints: undefined,
+      lebronGames: undefined,
+      lebronAssists: undefined,
+      lebronRebounds: undefined,
+      lebronSteals: undefined,
+      lebronTurnovers: undefined,
+      lebronFieldGoals: undefined,
+      lebronFreeThrowPercentage: undefined,
   }),
 
   created() {

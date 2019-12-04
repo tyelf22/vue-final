@@ -1,6 +1,7 @@
 <template>
   <div class="playerStats">
     <h1>2019-2020 Season Averages</h1>
+    <v-btn dark @click="vm.sort(ppgSort)">sort</v-btn>
     <v-card dark color="primary" class="mt-5 pa-2" v-for="player in this.$store.state.playerNames" :key="player.id"> 
       <v-row justify="space-between">
       <v-card-title>{{ player.name }}</v-card-title>
@@ -24,10 +25,23 @@
 export default {
     data() {
       return {
-        
+        vm: this.$store.state.playerNames,
+      }
+    },
+    methods: {
+      ppgSort: (a, b) => {
+        let comparison = 0
+        if(a.points > b.points) {
+          comparison = -1
+        } else if(a.points < b.points) {
+          comparison = 1
+        }
+        return comparison
       }
     }
-}
+      
+  }
+
 </script>
 
 <style scoped>
