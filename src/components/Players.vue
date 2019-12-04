@@ -81,7 +81,8 @@ export default {
       turnovers: undefined,
       fieldGoalPercentage: undefined,
       nameRules: [
-        v => !!v || 'Full Name is required'
+        v => !!v || 'Full Name is required',
+        v => (v || '').indexOf(' ') < 0 || 'No spaces are allowed'
       ],
       valid: false,
       freeThrowPercentage: undefined,
