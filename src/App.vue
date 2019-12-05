@@ -28,9 +28,11 @@
   </v-app-bar>
 
     <v-content>
-     <keep-alive> 
-      <router-view></router-view>
-     </keep-alive>
+      <transition name="fade" mode="out-in">
+        <keep-alive> 
+          <router-view></router-view>
+        </keep-alive>
+      </transition>
     </v-content>
   </v-app>
 </template>
@@ -94,6 +96,7 @@ export default {
         return this.$store.state.playerNames.length;
     },
 }
+
 };
 </script>
 
@@ -113,6 +116,45 @@ export default {
   margin-right: 10px;
   margin-bottom: 8px;
 }
+
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  transition: opacity 0.5s;
+}
+
+.fade-leave-active {
+  transition: opacity 0.5s;
+  opacity: 0;
+}
+
+
+
+
+/* .slide-enter-active {
+  animation: slide-in 1s ease-out forwards;
+} */
+
+/* @keyframes slide-out {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(20px);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: translateX(-60px);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+} */
 
 
 </style>

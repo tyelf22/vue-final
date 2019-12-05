@@ -25,17 +25,17 @@
                 <v-col class="text-center" cols="12" sm="3">
                     <v-icon large color="primary">mdi-numeric-1-circle</v-icon>
                     <h5 class="mt-4">Search Player</h5>
-                    <p class="mt-4 text-left">Start by searching the first and last name of the player you want to add.(i.e. Lebron James)</p>
+                    <p class="mt-4">Start by searching the first and last name of the player you want to add.(i.e. Lebron James)</p>
                 </v-col>
                 <v-col class="text-center" cols="12" sm="3">
                     <v-icon large color="primary">mdi-numeric-2-circle</v-icon>
                     <h5 class="mt-4">Add Player</h5>
-                    <p class="mt-4 text-left">Once the searched player is inside the queue box, add the player to your roster.</p>
+                    <p class="mt-4">Once the searched player is inside the queue box, add the player to your roster.</p>
                 </v-col>
                 <v-col class="text-center" cols="12" sm="3">
                     <v-icon large color="primary">mdi-numeric-3-circle</v-icon>
                     <h5 class="mt-4">View Stats</h5>
-                    <p class="mt-4 text-left">Each added player will have their stats displayed on the player stats page.</p>
+                    <p class="mt-4">Each added player will have their stats displayed on the player stats page.</p>
                 </v-col>
             </v-row>
         </div>

@@ -26,6 +26,7 @@
             </v-col>
         </v-row>
   
+            
             <v-row justify="center">
               <v-card color="primary" class="mt-5 ma-1" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
                   <v-img 
@@ -47,6 +48,7 @@
                 </v-row>
               </v-card>
           </v-row>  
+         
 
           <!-- Used custom directive -->
           <v-alert v-fade:display.delayed="'none'" id="playerAlert" v-model="playerAlert" v-if="playerAlert" type="success"> {{this.firstName}} {{this.lastName}} added!</v-alert>
