@@ -26,8 +26,9 @@
             </v-col>
         </v-row>
   
+        <app-player-card></app-player-card>
             
-            <v-row justify="center">
+<!--             <v-row justify="center">
               <v-card color="primary" class="mt-5 ma-1" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
                   <v-img 
                     class="align-end"
@@ -47,7 +48,7 @@
                   </v-btn>
                 </v-row>
               </v-card>
-          </v-row>  
+          </v-row> -->  
          
 
           <!-- Used custom directive -->
@@ -60,6 +61,9 @@
 
 <script>
 import axios from 'axios'
+import playerCard from './playerCard'
+
+
 export default {
   data() {
     return {
@@ -89,6 +93,10 @@ export default {
       valid: false,
       freeThrowPercentage: undefined,
     }
+  },
+
+  components: {
+    appPlayerCard: playerCard,
   },
 
   methods: {
@@ -177,12 +185,6 @@ export default {
       }, 3000)
     },
 
-
-
-    deleteItem(index) {
-      this.$store.state.playerNames.splice(index, 1)
-    },
- 
     reset () {
       this.$refs.form.reset();
     },

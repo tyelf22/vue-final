@@ -130,31 +130,4 @@ export default {
   opacity: 0;
 }
 
-
-
-
-/* .slide-enter-active {
-  animation: slide-in 1s ease-out forwards;
-} */
-
-/* @keyframes slide-out {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    transform: translateX(20px);
-  }
-}
-
-@keyframes slide-in {
-  0% {
-    transform: translateX(-60px);
-  }
-
-  100% {
-    transform: translateX(0);
-  }
-} */
-
-
 </style>
