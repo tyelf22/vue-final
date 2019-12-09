@@ -58,7 +58,7 @@ export default {
   }),
 
   created() {
-        axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=237")
+        axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=237") //Add example player on created
        .then(response => {
         this.lebronPoints = response.data.data[0].pts
         this.lebronGames = response.data.data[0].games_played
@@ -68,8 +68,9 @@ export default {
         this.lebronTurnovers = response.data.data[0].turnover
         this.lebronFieldGoals = response.data.data[0].fg_pct
         this.lebronFreeThrowPercentage = response.data.data[0].ft_pct
-
-            this.$store.state.playerNames.push({
+            
+            //push each item to players array and create new object
+            this.$store.state.playerNames.push({ 
               'id': 237,
               'name': "Lebron James",
               'weight': 250,
@@ -93,7 +94,7 @@ export default {
 
   computed: {
     counter() {
-        return this.$store.state.playerNames.length;
+        return this.$store.state.playerNames.length; //display current length of objects in array for user
     },
 }
 

@@ -1,6 +1,7 @@
 <template>
     <div>
         <div>
+            <!-- PARRALAX IMAGE -->
             <v-parallax
                 dark
                 height="300"
@@ -11,13 +12,15 @@
                 justify="center"
                 >
                 <v-col class="text-center" cols="12">
-                    <h1 class="display-2 mb-4" >NBA Stat Tracker</h1>
+                    <h1 class="display-2 mb-4">NBA Stat Tracker</h1>
                     <h4 class="subheading font-weight-thin ">Track your favorite players stats!</h4>
                 </v-col>
                 </v-row>
             </v-parallax>
         </div>
         <div>
+
+            <!-- HEADER AND INSTRUCTIONS -->
             <h2 class="title text-center mt-10 ">The best way to track and compare stats</h2>
             <h4 class="subtitle-1 text-center font-weight-thin">Start today by following three easy steps</h4>
 

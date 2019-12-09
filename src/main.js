@@ -6,6 +6,8 @@ import { routes } from './routes'
 import { store } from './store/store';
 
 Vue.use(VueRouter)
+
+//fade out notification for player search results and added player
 Vue.directive('fade', {
   bind(el, binding) {
     var delay = 0;
@@ -27,6 +29,7 @@ const router = new VueRouter({
   mode: 'history',
 });
 
+//event bus for communicating between componenets
 export const eventBus = new Vue();
 
 Vue.config.productionTip = false

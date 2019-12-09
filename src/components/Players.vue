@@ -2,9 +2,10 @@
   <div class="players">
         <h1>Search Player</h1> 
         <v-row>
+          <!-- SEARCH PLAYER -->
           <v-col cols="12" xs="12" md="6">
             <v-form ref="form" v-model="valid">
-              <v-text-field required :rules="nameRules" outlined v-model="inputF" label="First Name">{{ inputF }}</v-text-field>
+              <v-text-field required :rules="nameRules" outlined v-model="inputF" label="First Name">{{ inputF }}</v-text-field> 
               <v-text-field required :rules="nameRules" outlined v-model="inputL" label="Last Name">{{ inputL }}</v-text-field>
               <v-btn :disabled="!valid" @click="getData" class="mr-2 mt-n1" color="primary">
                   <v-icon class="mr-2">mdi-magnify</v-icon>
@@ -14,7 +15,7 @@
               </v-form>
             </v-col>
               
-            
+            <!-- OUTPUT SEARCHED PLAYER -->
             <v-col cols="12" xs="12" md="6">
               <v-sheet dark height="145" class="pa-12 text-center" color="success" elevation="3">
                 <h3>{{firstName}} {{lastName}}</h3>
@@ -28,7 +29,7 @@
   
         <app-player-card></app-player-card>
 
-        <!-- Used custom directive -->
+        <!-- Custom directive -->
         <v-alert v-fade:display.delayed="'none'" id="playerAlert" v-model="playerAlert" v-if="playerAlert" type="success"> {{this.firstName}} {{this.lastName}} added!</v-alert>
         <v-alert v-fade:display.delayed="'none'" id="errorAlert" v-model="alert" v-if="alert" type="error">No player found</v-alert>
         <v-alert v-fade:display.delayed="'none'" id="errorAlert" v-model="seasonAlert" v-if="seasonAlert" type="error">Choose a current player</v-alert>
@@ -79,8 +80,9 @@ export default {
   methods: {
     getData() {
     
-        axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " " + this.inputL)
+        axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " " + this.inputL) // axios request for search player using first and last name
        .then(response => {
+         //set variables to responses
          this.firstName = response.data.data[0].first_name
          this.lastName = response.data.data[0].last_name
          this.heightFeet = response.data.data[0].height_feet
@@ -98,11 +100,13 @@ export default {
 
     },
 
+    //Call two methods on click to retreive data and validate form
     buttonClick() {
       this.getData();
       this.validate();
     },
 
+    //Add each variable to object in local store
     toArray() {
 
         axios.get("https://www.balldontlie.io/api/v1/season_averages?season=2019&player_ids[]=" + this.id)
@@ -140,8 +144,8 @@ export default {
          this.resetSeasonAlert();
        })
 
-        this.playerAlert = true;
-        this.resetPlayerAlert();
+        this.playerAlert = true; //Feedback for added player
+        this.resetPlayerAlert(); 
     },
 
     resetPlayerAlert() {
@@ -163,7 +167,7 @@ export default {
     },
 
     reset () {
-      this.$refs.form.reset();
+      this.$refs.form.reset(); //Reset form
     },
 
   },
@@ -220,10 +224,6 @@ h1 {
   align-items: center;
   flex-flow: wrap;
   border-radius: 4px;
-}
-
-@media screen and (min-width: 1080px) {
-
 }
 
 </style>

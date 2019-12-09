@@ -11,6 +11,7 @@
           
         </v-expansion-panel-header>
         <v-expansion-panel-content>
+          <!-- SORT PLAYERS TO THE TOP BASED ON SEASON AVERAGE -->
           <v-btn color="success" class="mr-2" @click="vm.sort(statSort('points'))">PPG</v-btn>
           <v-btn color="success"  class="mr-2" @click="vm.sort(statSort('assists'))">APG</v-btn>
           <v-btn color="success"  @click="vm.sort(statSort('rebounds'))">RPG</v-btn>
@@ -24,6 +25,7 @@
           <v-row justify="space-between">
           <v-card-title>{{ player.name }}</v-card-title>
           <v-card-text> 
+            <!-- DISPLAY EACH PLAYER STAT -->
             Games Played: {{player.gamesPlayed}} |
             Points: {{player.points}} | 
             Assists: {{player.assists}} |
@@ -50,13 +52,13 @@ import playerCard from './playerCard'
 export default {
     data() {
       return {
-        vm: this.$store.state.playerNames,
+        vm: this.$store.state.playerNames, //REFER TO THIS OBJECT
       }
     },
     methods: {
       statSort: (prop) => {
         return (a, b) => {
-          return b[prop] - a[prop]
+          return b[prop] - a[prop] //RETURN SORTED DATA BASED ON PASSED PROP
         }
       }
     },

@@ -1,5 +1,6 @@
 <template>
             <v-row justify="center">
+              <!-- CREATE CARD FOR EACH PLAYER IN OBJECT -->
               <v-card color="primary" class="mt-5 ma-1" v-for="(player, index) in this.$store.state.playerNames" :key="player.id"> 
                   <v-img 
                     class="align-end"
@@ -26,7 +27,7 @@
 export default {
     methods: {
         deleteItem(index) {
-      this.$store.state.playerNames.splice(index, 1)
+      this.$store.state.playerNames.splice(index, 1) //delete object item in array
     },
   }
 }
