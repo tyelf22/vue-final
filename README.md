@@ -4,7 +4,7 @@
 [NBA Stat Tracker](https://nbastattracker.netlify.com/) 
 
 ## Final Requirements
-1.Effectively use conditional logic and JavaScript array methods to render large lists. [playerCard.vue](./src/componenets/playerCard.vue) line 29
+1.Effectively use conditional logic and JavaScript array methods to render large lists. ([playerCard.vue](./src/components/playerCard.vue) line 29)
 ```javascript
 v-if="playerAlert"
 
@@ -21,7 +21,7 @@ deleteItem(index) {
 4.Properly use Git for your source version control with an established record of at least 4 days of commits each week from October 15th through December 6th.
 ✔
 
-5.Allow communication between components using props, custom events, or local store.
+5.Allow communication between components using props, custom events, or local store. ([playerCard.vue](./src/store/store.js) line 6)
 ```javascript
 export const store = new Vuex.Store({
     state: {
