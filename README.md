@@ -4,13 +4,13 @@
 [NBA Stat Tracker](https://nbastattracker.netlify.com/) 
 
 ## Final Requirements
-1.Effectively use conditional logic and JavaScript array methods to render large lists. 
+1.Effectively use conditional logic and JavaScript array methods to render large lists. [playerCard.vue](./src/componenets/playerCard.vue) line 29
 ```javascript
 v-if="playerAlert"
 
-this.$store.state.playerNames.push({
-    'id': this.id,
-    'name': this.firstName + " " + this.lastName
+deleteItem(index) {
+      this.$store.state.playerNames.splice(index, 1)
+    }
 ```
 2.Encapsulate your code as VueJS single-file components.
 ✔
@@ -45,8 +45,15 @@ export const store = new Vuex.Store({
 
 7.Create a custom directive and use it on at least one of your components.
 ```html
-<v-alert __v-fade:display.delayed="'none'"__ id="playerAlert" v-model="playerAlert" v-if="playerAlert" type="success"> {{this.firstName}} {{this.lastName}} added!</v-alert>
-
+<v-alert v-fade:display.delayed="'none'" id="playerAlert" v-model="playerAlert" v-if="playerAlert" type="success"> {{this.firstName}} {{this.lastName}} added!</v-alert>
+```
+```javascript
+Vue.directive('fade', {
+  bind(el, binding) {
+    var delay = 0;
+    if(binding.modifiers['delayed']) {
+      delay = 3000;
+    }
 ```
 
 8.Use a mix of animations and transitions to enhance some aspects of your project.
