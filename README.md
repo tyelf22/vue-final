@@ -1,29 +1,92 @@
 # vue-final
 
+## View on Netlify
+[NBA Stat Tracker](https://nbastattracker.netlify.com/) 
+
 ## Final Requirements
-*Effectively use conditional logic and JavaScript array methods to render large lists.
+1.Effectively use conditional logic and JavaScript array methods to render large lists. 
+```javascript
+v-if="playerAlert"
 
-*Encapsulate your code as VueJS single-file components.
+this.$store.state.playerNames.push({
+    'id': this.id,
+    'name': this.firstName + " " + this.lastName
+```
+2.Encapsulate your code as VueJS single-file components.
+✔
 
-*Work with the Vue-CLI to create and manage your project within a real development toolset.
+3.Work with the Vue-CLI to create and manage your project within a real development toolset.
+✔
 
-*Properly use Git for your source version control with an established record of at least 4 days of commits each week from October 15th through December 6th.
+4.Properly use Git for your source version control with an established record of at least 4 days of commits each week from October 15th through December 6th.
+✔
 
-*Allow communication between components using props, custom events, or local store.
+5.Allow communication between components using props, custom events, or local store.
+```javascript
+export const store = new Vuex.Store({
+    state: {
+        playerNames: []
+    }
+})
+```
 
-*Present a form for user input that provides useful form validation and feedback.
+6.Present a form for user input that provides useful form validation and feedback.
+```html
+<v-form ref="form" v-model="valid">
+    <v-text-field required :rules="nameRules" outlined v-model="inputF" label="First Name">{{ inputF }}</v-text-field> 
+    <v-text-field required :rules="nameRules" outlined v-model="inputL" label="Last Name">{{ inputL }}</v-text-field>
+    <v-btn :disabled="!valid" @click="getData" class="mr-2 mt-n1" color="primary">
+        <v-icon class="mr-2">mdi-magnify</v-icon>
+    Search Player</v-btn>
+    <v-btn @click="reset" class="mr-2 mt-n1" color="error">
+    Reset Form</v-btn>
+</v-form>
+```
 
-*Create a custom directive and use it on at least one of your components.
+7.Create a custom directive and use it on at least one of your components.
+```html
+<v-alert __v-fade:display.delayed="'none'"__ id="playerAlert" v-model="playerAlert" v-if="playerAlert" type="success"> {{this.firstName}} {{this.lastName}} added!</v-alert>
 
-*Use a mix of animations and transitions to enhance some aspects of your project.
+```
 
-*Connect to a server using HTTP and display retrieved data (use vue-resource or Axios).
+8.Use a mix of animations and transitions to enhance some aspects of your project.
+```html
+<transition name="fade" mode="out-in">
+    <keep-alive> 
+        <router-view></router-view>
+    </keep-alive>
+</transition>
+```
 
-*Provide at least 3 different routes with navigation between them using vue-router.
+9.Connect to a server using HTTP and display retrieved data (use vue-resource or Axios).
+```javascript
+axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " " + this.inputL) 
+.then(response => {
+    this.firstName = response.data.data[0].first_name
+    this.lastName = response.data.data[0].last_name
+})
+```
 
-*Manage your application's state using vuex.
+10.Provide at least 3 different routes with navigation between them using vue-router.
+```javascript
+export const routes = [
+    { path: '/', component: Home },
+    { path: '/players', component: Players },
+    { path: '/playerstats', component: PlayerStats  },
+]
+```
 
-*Structure, document, and deploy your final project code according to common industry practices.
+11.Manage your application's state using vuex.
+```javascript
+export const store = new Vuex.Store({
+    state: {
+        playerNames: [],
+    }
+})
+```
+
+12.Structure, document, and deploy your final project code according to common industry practices.
+✔
 
 ## Project setup
 ```
