@@ -21,7 +21,7 @@ deleteItem(index) {
 4.Properly use Git for your source version control with an established record of at least 4 days of commits each week from October 15th through December 6th.
 ✔
 
-5.Allow communication between components using props, custom events, or local store. ([playerCard.vue](./src/store/store.js) line 6)
+5.Allow communication between components using props, custom events, or local store. ([store.js](./src/store/store.js) line 6)
 ```javascript
 export const store = new Vuex.Store({
     state: {
@@ -30,7 +30,7 @@ export const store = new Vuex.Store({
 })
 ```
 
-6.Present a form for user input that provides useful form validation and feedback.
+6.Present a form for user input that provides useful form validation and feedback. ([Players.vue](./src/components/Players.vue) line 7)
 ```html
 <v-form ref="form" v-model="valid">
     <v-text-field required :rules="nameRules" outlined v-model="inputF" label="First Name">{{ inputF }}</v-text-field> 
@@ -43,7 +43,7 @@ export const store = new Vuex.Store({
 </v-form>
 ```
 
-7.Create a custom directive and use it on at least one of your components.
+7.Create a custom directive and use it on at least one of your components. ([Players.vue](./src/components/Players.vue) line 32)
 ```html
 <v-alert v-fade:display.delayed="'none'" id="playerAlert" v-model="playerAlert" v-if="playerAlert" type="success"> {{this.firstName}} {{this.lastName}} added!</v-alert>
 ```
@@ -56,7 +56,7 @@ Vue.directive('fade', {
     }
 ```
 
-8.Use a mix of animations and transitions to enhance some aspects of your project.
+8.Use a mix of animations and transitions to enhance some aspects of your project. ([App.vue](./src/App.vue) line 31)
 ```html
 <transition name="fade" mode="out-in">
     <keep-alive> 
@@ -65,7 +65,7 @@ Vue.directive('fade', {
 </transition>
 ```
 
-9.Connect to a server using HTTP and display retrieved data (use vue-resource or Axios).
+9.Connect to a server using HTTP and display retrieved data (use vue-resource or Axios). ([Players.vue](./src/components/Players.vue) line 83)
 ```javascript
 axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " " + this.inputL) 
 .then(response => {
@@ -74,7 +74,7 @@ axios.get("https://www.balldontlie.io/api/v1/players?search=" + this.inputF + " 
 })
 ```
 
-10.Provide at least 3 different routes with navigation between them using vue-router.
+10.Provide at least 3 different routes with navigation between them using vue-router. ([routes.js](./src/routes.js) line 5)
 ```javascript
 export const routes = [
     { path: '/', component: Home },
@@ -83,7 +83,7 @@ export const routes = [
 ]
 ```
 
-11.Manage your application's state using vuex.
+11.Manage your application's state using vuex. ([store.js](./src/store/store.js) line 6)
 ```javascript
 export const store = new Vuex.Store({
     state: {
