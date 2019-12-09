@@ -1,4 +1,5 @@
 # vue-final
+This application allow you to view all of the current NBA players season averages. Stats are updated after approximately 10 minutes post game. You are only able to add current players and will get a notification if the player isn't an active player. Once you have the players you want added to your roster, go to the player stats page. The player stats page will display the season averages. You are also able to sort the players ranking them from top to bottom depending on who has the highest PPG, APG, or RPG.
 
 ## View on Netlify
 [NBA Stat Tracker](https://nbastattracker.netlify.com/) 
