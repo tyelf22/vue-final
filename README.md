@@ -4,13 +4,13 @@
 [NBA Stat Tracker](https://nbastattracker.netlify.com/) 
 
 ## Final Requirements
-1.Effectively use conditional logic and JavaScript array methods to render large lists. ([playerCard.vue](./src/components/playerCard.vue) line 29)
+1.Effectively use conditional logic and JavaScript array methods to render large lists. ([Players.vue](./src/components/Players.vue) line 123)
 ```javascript
 v-if="playerAlert"
 
-deleteItem(index) {
-      this.$store.state.playerNames.splice(index, 1)
-    }
+this.$store.state.playerNames.push({
+    'id': this.id,
+    'name': this.firstName + " " + this.lastName
 ```
 2.Encapsulate your code as VueJS single-file components.
 ✔
