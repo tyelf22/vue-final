@@ -10,7 +10,7 @@ If you aren't an avid NBA fan and need some ideas of which players you can track
 ## Project setup
 ### 1. Install node modules
 ```
-1. npm install
+npm install
 ```
 
 ### 2. Serve for development
